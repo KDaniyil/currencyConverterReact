@@ -1,0 +1,14 @@
+.app {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.app-products {
+    display: flex;
+    gap: 10px;
+}
+.card-body {
+    text-align: center;
+}

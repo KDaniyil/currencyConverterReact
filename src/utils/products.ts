@@ -1,28 +1,37 @@
-type Currency = "USD" | "EUR" | "UAH" | "GBP" 
-export type Product = {
+type ProductType = {
     id: number
     title: string
     description: string
-    currency: Currency
-    price: number
+    value: number
 }
 
-export const productList: Product[] = [
+export const productList: ProductType[] = [
     {
         id: 1,
         title: "IPhone 12",
         description: "This is iPhone 12 ...",
-        currency: "USD",
-        price: 1
+        value: 750
+    },
+    {
+        id: 2,
+        title: "IPhone 8",
+        description: "This is iPhone 8 ...",
+        value: 850
+    },
+    {
+        id: 3,
+        title: "IPhone X",
+        description: "This is iPhone X ...",
+        value: 1250
     },
 ]
 
-type CurrencyValue = {
-    [id in Currency]: number
+type RATESType = {
+    [currency:string]: number
 }
-const currencyValue = {
+export const RATES:RATESType = {
     "USD" : 1,
-    "EUR": 1.06,
-    "UAH": 0.02,
-    "GBP": 1.19, 
+    "EUR": 0.94,
+    "UAH": 36.69,
+    "GBP": 0.83, 
 }
