@@ -1,14 +1,16 @@
 import { Button, Card } from 'react-bootstrap'
 
 type Props = {
+    id: number
     title: string
     description: string
     currency: string
     value: number
-    addToTotal: (value: number) => void
+    addToTotal: (id: number) => void
 }
 const ProductItem = ({
     addToTotal,
+    id,
     title,
     description,
     currency,
@@ -27,7 +29,7 @@ const ProductItem = ({
                     </Card.Text>
                     <Button
                         variant="outline-primary"
-                        onClick={() => addToTotal(value)}
+                        onClick={() => addToTotal(id)}
                     >
                         Buy
                     </Button>

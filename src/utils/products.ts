@@ -1,4 +1,4 @@
-type ProductType = {
+export type ProductType = {
     id: number
     title: string
     description: string
@@ -35,3 +35,11 @@ export const RATES:RATESType = {
     "UAH": 36.69,
     "GBP": 0.83, 
 }
+export const convertArrayInObject = (arr: ProductType[]) =>
+        arr.reduce(
+            (object, arrItem) => ({
+                ...object,
+                [arrItem.id]: arrItem,
+            }),
+            {}
+        )

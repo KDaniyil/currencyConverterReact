@@ -1,18 +1,24 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ProductItem from 'components/ProductItem/ProductItem'
+import Total from 'components/Total/Total'
 import { useState } from 'react'
 import { Alert, Button, ButtonGroup } from 'react-bootstrap'
 import { productList, RATES } from 'utils/products'
 import './App.css'
 
 type Props = {}
+export type TotalType = {
+    [id: number]: number
+}
 const App = (props: Props) => {
-    const [total, setTotal] = useState<number>(0)
-    const addToTotal = (value: number) =>
-        setTotal((prevState) => prevState + value)
+    const [total, setTotal] = useState<TotalType>({})
+    const addToTotal = (id: number) =>
+        setTotal((prevState) => ({
+            ...prevState,
+            [id]: (prevState[id] || 0) + 1,
+        }))
     const [currencyOption, setCurrencyOption] = useState<string>('USD')
     const changeCurrency = (currency: string) => setCurrencyOption(currency)
-    const getValue = (rate: number, value: number) => Math.round(value * rate)
 
     return (
         <div className="app">
@@ -57,15 +63,16 @@ const App = (props: Props) => {
                         <ProductItem
                             addToTotal={addToTotal}
                             key={id}
+                            id={id}
                             title={title}
                             description={description}
                             currency={currencyOption}
-                            value={getValue(RATES[currencyOption], value)}
+                            value={value * RATES[currencyOption]}
                         />
                     )
                 })}
             </div>
-            <div>Total: {total}</div>
+            <Total total={total} currency={currencyOption} />
         </div>
     )
 }
